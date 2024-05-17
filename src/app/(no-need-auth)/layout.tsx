@@ -1,11 +1,9 @@
-import "../globals.css";
+import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-import { Metadata } from "next";
-import { NoNeedDefaultLayout } from "@/components";
+import { DefaultLayout } from "@/components";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const inter = Inter({ subsets: ["latin"] });
-export const metadata: Metadata = { title: "Login" };
 
 export default function RootLayout({
   children,
@@ -17,7 +15,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
         <AntdRegistry>
-          <NoNeedDefaultLayout>{children}</NoNeedDefaultLayout>
+          <DefaultLayout>{children}</DefaultLayout>
         </AntdRegistry>
       </body>
     </html>

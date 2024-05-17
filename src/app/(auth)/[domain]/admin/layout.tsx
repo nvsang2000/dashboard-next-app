@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../../globals.css";
+import "@/styles/globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { DefaultLayout } from "../../../components";
+import { AdminLayout } from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
         <AntdRegistry>
-          <DefaultLayout>{children}</DefaultLayout>
+          <AdminLayout>{children}</AdminLayout>
         </AntdRegistry>
       </body>
     </html>

@@ -1,4 +1,4 @@
+import AdminLayout from "./AdminLayout";
 import DefaultLayout from "./DefaultLayout";
-import NoNeedDefaultLayout from "./NoNeedDefaultLayout";
 
-export { DefaultLayout, NoNeedDefaultLayout };
+export { AdminLayout, DefaultLayout };
