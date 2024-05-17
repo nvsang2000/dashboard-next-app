@@ -1,25 +1,22 @@
+"use client";
 import { Row, Col, message } from "antd";
 import axios from "axios";
 import { LoginForm } from "@/components";
-import { redirect } from "next/navigation";
+import { loginApi } from "@/services/apis";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
-const Login = async ({ params }: { params: { domain: string } }) => {
+export default function LoginPage({ params }: { params: { domain: string } }) {
+  const router = useRouter();
   const handleLogin = async (values: any) => {
-    "use server";
     const baseURL = process.env.NEXT_PUBLIC_ENV_API_URL;
     const { data } = await axios.get(`${baseURL}api/domain/${params.domain}`);
-
-    if (!data) redirect("/404");
+    if (!data) router.push("/404");
     const valueSubmit = { ...values, domainId: data.id };
 
-    console.log("result", `${baseURL}auth/login`);
-    await axios
-      .post(`${baseURL}auth/login`, valueSubmit, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then(({ data }) => {})
-      .catch((e) => console.log("e.data", e.response.data));
-
+    const result = await loginApi(valueSubmit);
+    const accessToken: string = result?.data || {};
+    Cookies.set("accessToken", accessToken, { expires: 30 });
   };
 
   return (
@@ -40,6 +37,4 @@ const Login = async ({ params }: { params: { domain: string } }) => {
       </Row>
     </div>
   );
-};
-
-export default Login;
+}
