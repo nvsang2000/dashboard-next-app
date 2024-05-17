@@ -1,12 +1,6 @@
 "use client";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 import { Layout, Menu, MenuItemProps, theme } from "antd";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -120,11 +114,7 @@ export default function DefaultLayout({ children }: any) {
       children: item?.children?.map((sub: any) => {
         return {
           key: sub.key,
-          label: (
-            <div onClick={() => router.push(sub.href)}>
-              {sub.label}
-            </div>
-          ),
+          label: <div onClick={() => router.push(sub.href)}>{sub.label}</div>,
         };
       }),
     };
@@ -149,7 +139,9 @@ export default function DefaultLayout({ children }: any) {
             items={mappingMenu}
           />
         </Sider>
-        <Content className={`"p-[20px]"} `}>{children}</Content>
+        <Content className={`"p-[20px]"} `}>
+          <main>{children}</main>
+        </Content>
       </Layout>
     </Layout>
   );

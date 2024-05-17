@@ -1,11 +1,9 @@
 import { message } from 'antd'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import getConfig from 'next/config'
 import Router from 'next/router'
 
-const { publicRuntimeConfig } = getConfig()
-const baseURL = publicRuntimeConfig.NEXT_PUBLIC_ENV_API_URL
+const baseURL = process.env.NEXT_PUBLIC_ENV_API_URL
 
 const axiosInstance = axios.create({
   baseURL,

@@ -1,14 +1,18 @@
 "use client";
-import { getDomainPublicApi } from "@/services/apis";
+import { getDomainPublicApi, loginApi } from "@/services/apis";
 import { Button, Form, Row, Col, Input, Checkbox } from "antd";
 import { useEffect } from "react";
 
 const Login = () => {
-
   const onFinish = async (values: any) => {
-    const { data } = await getDomainPublicApi(domain);
-    const valueSubmit = { ...values, domainId: data?.id };
-    login(valueSubmit);
+    //const { data } = await getDomainPublicApi(domain);
+    const valueSubmit = {
+      ...values,
+      domainId: "89b263e9-35ac-4ef5-926a-bdd7eaa5deaf",
+    };
+    const result = await loginApi(valueSubmit);
+
+    console.log("result", result);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -16,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white">
       <Row justify={"center"} align={"middle"} style={{ height: "300px" }}>
         <Col span={24} style={{ textAlign: "center" }}>
           <h2
@@ -33,6 +37,7 @@ const Login = () => {
             autoComplete="off"
             layout={"vertical"}
             colon={false}
+            onFinish={onFinish}
           >
             <Form.Item
               label={
